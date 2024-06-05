@@ -29,4 +29,5 @@ function love.draw()
     _pantalla:draw()
 
     utilidades.despuesDeDibujar()
+    --pepe = heroe.nuevo_heroe()
 end
