@@ -4,7 +4,7 @@ require "objetos/cama"
 local pantalla = {
     init = function(self)
         self.imagen_fondo = love.graphics.newImage("assets/imagenes/fondo.png")
-        self.acrobata = nuevo_acrobata(20, 10)
+        self.acrobata = nuevo_acrobata(20, 10, 20, 60)
         self.cama = nueva_cama()
     end,
     update = function(self, dt)

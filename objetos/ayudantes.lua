@@ -19,7 +19,6 @@ function nuevos_ayudantes()
             -- TODO: No implementado
         end,
         draw = function(self)
-            print("AQUI!!!!")
             love.graphics.draw(self.imagenes[1], self.x + self.desplz_img_x, self.y + self.desplz_img_y)
         end,
         draw_hitbox = function(self)

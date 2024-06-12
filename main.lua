@@ -6,6 +6,7 @@ utilidades = require "utilidades"
 
 ANCHO_VIRTUAL = 160
 ALTO_VIRTUAL = 90
+GRAVEDAD = 150
 
 function cargar_pantalla(ruta_modulo_pantalla)
     _pantalla = require(ruta_modulo_pantalla)
