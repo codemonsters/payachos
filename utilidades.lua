@@ -58,4 +58,15 @@ function rnd(min_value, max_value)
     return love.math.random(min_value * 1000, max_value * 1000) / 1000
 end
 
+-- comprueba si los objetos de juego obj1 y obj2 están tocándose
+--
+-- la función asume que ambos objetos tienen definido su hitbox como 
+-- un rectángulo definido por estos campos: x, y, ancho y alto
+function colisionando(obj1, obj2)
+    return obj1.x < obj2.x + obj2.ancho and
+        obj2.x < obj1.x + obj1.ancho and
+        obj1.y < obj2.y + obj2.alto and
+        obj2.y < obj1.y + obj1.alto
+end
+
 return utilidades

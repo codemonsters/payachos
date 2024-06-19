@@ -10,6 +10,12 @@ local pantalla = {
     update = function(self, dt)
         self.acrobata:update(dt)
         self.cama:update(dt)
+        -- detección colisiones
+        if colisionando(self.acrobata, self.cama) then
+            self.acrobata.y = self.cama.y - self.acrobata.alto
+            self.acrobata.vel_y = 120
+        end
+
 
     end,
     draw = function(self, dt)
