@@ -32,3 +32,11 @@ function love.draw()
     utilidades.despuesDeDibujar()
     --pepe = heroe.nuevo_heroe()
 end
+
+function love.keypressed(key)
+    _pantalla:keypressed(key)
+end
+
+function love.keyreleased( key )
+    _pantalla:keyreleased(key)
+end

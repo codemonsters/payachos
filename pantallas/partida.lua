@@ -21,5 +21,9 @@ local pantalla = {
         self.acrobata:draw_hitbox()
         self.cama:draw_hitbox()
     end,
+    keypressed = function(self, key)
+    end,
+    keyreleased = function(self, key)
+    end,
 }
 return pantalla
