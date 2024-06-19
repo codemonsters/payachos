@@ -2,6 +2,7 @@ require "objetos/ayudantes"
 
 function nueva_cama()
     local cama = {
+        VELOCIDAD = 50,
         init = function(self)
             self.ancho = 22 -- ancho del hitbox
             self.alto = 10 -- alto del hitbox (realmente va hacia abajo respecto a la posición self.y)
@@ -12,8 +13,18 @@ function nueva_cama()
                 love.graphics.newImage("assets/imagenes/cama_0002.png"),
                 love.graphics.newImage("assets/imagenes/cama_0003.png"),
             }
+            -- self.moving_left = false
+            -- self.moving_right = false
         end,
         update = function(self, dt)
+            if self.moving_left then
+                self.x = self.x - self.VELOCIDAD * dt
+                self.ayudantes.x = self.ayudantes.x - self.VELOCIDAD * dt
+            end
+            if self.moving_right then
+                self.x = self.x + self.VELOCIDAD * dt
+                self.ayudantes.x = self.ayudantes.x + self.VELOCIDAD * dt
+            end
             self.ayudantes:update(dt) -- self.ayudantes.update(ayudantes, dt)
         end,
         draw = function(self)

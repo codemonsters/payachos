@@ -22,8 +22,18 @@ local pantalla = {
         self.cama:draw_hitbox()
     end,
     keypressed = function(self, key)
+        if key == "left" then
+            self.cama.moving_left = true
+        elseif key == "right" then
+            self.cama.moving_right = true
+        end
     end,
     keyreleased = function(self, key)
+        if key == "left" then
+            self.cama.moving_left = false
+        elseif key == "right" then
+            self.cama.moving_right = false
+        end
     end,
 }
 return pantalla
