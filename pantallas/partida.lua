@@ -12,6 +12,10 @@ local pantalla = {
     update = function(self, dt)
         self.acrobata:update(dt)
         self.cama:update(dt)
+        -- detección colisiones paredes laterales
+        if self.acrobata.x < 0 or self.acrobata.x + self.acrobata.ancho > ANCHO_VIRTUAL then
+            self.acrobata.vel_x = -1 * self.acrobata.vel_x
+        end
         -- detección colisiones acróbata-cama
         if colisionando(self.acrobata, self.cama) then
             self.acrobata.y = self.cama.y - self.acrobata.alto
