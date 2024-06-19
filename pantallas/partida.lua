@@ -2,6 +2,7 @@ require "objetos/acrobata"
 require "objetos/cama"
 
 local pantalla = {
+    VELOCIDAD_REBOTE_CON_CAMA = 120,
     init = function(self)
         self.imagen_fondo = love.graphics.newImage("assets/imagenes/fondo.png")
         self.acrobata = nuevo_acrobata(20, 10, 20, 60)
@@ -13,7 +14,7 @@ local pantalla = {
         -- detección colisiones
         if colisionando(self.acrobata, self.cama) then
             self.acrobata.y = self.cama.y - self.acrobata.alto
-            self.acrobata.vel_y = 120
+            self.acrobata.vel_y = self.VELOCIDAD_REBOTE_CON_CAMA
         end
 
 
