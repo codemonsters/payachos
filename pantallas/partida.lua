@@ -33,8 +33,10 @@ local pantalla = {
         self.acrobata:draw()
         self.cama:draw()
         love.graphics.setColor(1, 0, 0, 0.5)
-        self.acrobata:draw_hitbox()
-        self.cama:draw_hitbox()
+        if DEBUG then
+            self.acrobata:draw_hitbox()
+            self.cama:draw_hitbox()
+        end
     end,
     keypressed = function(self, key)
         if key == "left" then
