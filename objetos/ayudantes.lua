@@ -3,6 +3,9 @@ function nuevos_ayudantes(velocidad)
         init = function(self)
             --self.x = 20  -- coordenada x del héroe
             --self.y = 20  -- coordenada y del héroe
+            self.FPS = 20
+            self.estado = "parado" -- estados posibles: "parado", "andando_izquierda", "andando_derecha"
+            self.tiempo_en_este_estado = 0
             self.velocidad = velocidad
             self.ancho = 45 -- ancho del hitbox
             self.alto = 20 -- alto del hitbox (realmente va hacia abajo respecto a la posición self.y)
@@ -21,16 +24,40 @@ function nuevos_ayudantes(velocidad)
             self.indice_imagen_actual = 1
         end,
         update = function(self, dt)
-            if self.moving_left then
+            if self.moving_left and not self.moving_right then
                 self.x = self.x - self.velocidad * dt
-            end
-            if self.moving_right then
+                if self.estado ~= "andando_izquierda" then
+                    self.estado = "andando_izquierda"
+                    self.tiempo_en_este_estado = 0
+                else
+                    self.tiempo_en_este_estado = self.tiempo_en_este_estado + dt
+                end
+            elseif self.moving_right and not self.moving_left then
                 self.x = self.x + self.velocidad * dt
+                if self.estado ~= "andando_derecha" then
+                    self.estado = "andando_derecha"
+                    self.tiempo_en_este_estado = 0
+                else
+                    self.tiempo_en_este_estado = self.tiempo_en_este_estado + dt
+                end
+            else
+                if self.estado ~= "parado" then
+                    self.estado = "parado"
+                    self.tiempo_en_este_estado = 0
+                    -- TODO: Considerar si poner aquí self.indice_imagen_actual = 1
+                else
+                    self.tiempo_en_este_estado = self.tiempo_en_este_estado + dt
+                end
             end
-            -- TODO: cambiar de fotograma
+
+            -- cambio de fotograma
+            if self.estado == "andando_izquierda" or self.estado == "andando_derecha" then
+                local fotograma = math.floor(self.tiempo_en_este_estado * self.FPS)
+                self.indice_imagen_actual = 1 + fotograma % #self.imagenes
+            end
         end,
         draw = function(self)
-            love.graphics.draw(self.imagenes[1], self.x + self.desplz_img_x, self.y + self.desplz_img_y)
+            love.graphics.draw(self.imagenes[self.indice_imagen_actual], self.x + self.desplz_img_x, self.y + self.desplz_img_y)
         end,
         draw_hitbox = function(self)
             love.graphics.rectangle("line", self.x, self.y, self.ancho, self.alto)
