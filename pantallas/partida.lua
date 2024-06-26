@@ -22,6 +22,7 @@ local pantalla = {
             local distancia_entre_centros = (self.acrobata.x + self.acrobata.ancho / 2) - (self.cama.x + self.cama.ancho / 2)
             self.acrobata.vel_x = self.acrobata.vel_x + distancia_entre_centros * dt * self.FACTOR_REBOTE_VEL_X
             self.acrobata.vel_y = self.VELOCIDAD_REBOTE_CON_CAMA
+            self.cama:inicia_animacion_rebote()
         end
 
 
